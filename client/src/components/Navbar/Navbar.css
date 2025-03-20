@@ -1,0 +1,8 @@
+.navbar .right_nav {
+  position: relative;
+}
+
+.MuiList-root {
+  position: absolute;
+  width: 197px !important;
+}

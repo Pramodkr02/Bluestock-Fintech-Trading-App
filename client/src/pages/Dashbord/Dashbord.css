@@ -1,0 +1,44 @@
+.dashbord .dash_col1 .circle_wrapper .circle_1 {
+  position: absolute;
+  z-index: 10;
+  height: 120px;
+  width: 120px;
+  background: red;
+  border-radius: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.384);
+  right: 163px;
+  top: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 70%;
+}
+
+.dashbord .dash_col1 .circle_wrapper .circle_2 {
+  position: absolute;
+  z-index: 5;
+  height: 200px;
+  width: 200px;
+  background: rgba(255, 102, 0, 0.548);
+  border-radius: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.384);
+  right: 25px;
+  top: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dashbord .dash_col1 .circle_wrapper .circle_3 {
+  position: absolute;
+  z-index: 1;
+  height: 120px;
+  width: 120px;
+  background: rgb(110, 52, 203);
+  border-radius: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.384);
+  right: 211px;
+  top: 243px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

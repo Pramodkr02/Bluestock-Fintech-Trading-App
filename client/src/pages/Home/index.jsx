@@ -12,6 +12,7 @@ import { BsCartDashFill } from "react-icons/bs";
 import { MdSubscriptions } from "react-icons/md";
 import { AiFillMessage } from "react-icons/ai";
 import Navbar from "../../components/Navbar";
+import Dashbord from "../Dashbord";
 
 const Home = () => {
   return (
@@ -102,9 +103,12 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="right_col w-[88%] ">
+        <div className="right_col w-[88%] flex flex-col">
           <div className="nav w-full border-b border-[rgba(0,0,0,0.1)] px-8 py-3">
             <Navbar />
+          </div>
+          <div className="dashbord">
+            <Dashbord />
           </div>
         </div>
       </div>

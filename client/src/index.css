@@ -24,6 +24,16 @@ body {
   justify-content: left !important;
   color: rgba(0, 0, 0, 0.5) !important;
 }
+.btn1 {
+  margin-top: 11px !important;
+  width: 100% !important;
+  display: flex !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  justify-content: space-between !important;
+  color: rgba(0, 0, 0, 0.5) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.169) !important;
+}
 .btn:hover {
   background: #ced4da !important;
 }
