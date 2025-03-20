@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: boder-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  /* background: #f5f0f0; */
+  color: #666;
+  overflow-x: hidden;
+}
+
+.btn {
+  width: 100% !important;
+  display: flex !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  justify-content: left !important;
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+.btn:hover {
+  background: #ced4da !important;
+}
