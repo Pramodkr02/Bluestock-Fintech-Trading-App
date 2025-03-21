@@ -1,0 +1,112 @@
+.faq-container {
+  @apply max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-24;
+}
+
+.faq-title {
+  @apply text-3xl sm:text-4xl font-bold text-center mb-12;
+  animation: fadeInDown 0.6s ease-out forwards;
+}
+
+.faq-list {
+  @apply space-y-4;
+}
+
+.faq-item {
+  @apply bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer transform transition-all duration-300;
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.faq-item:hover {
+  @apply shadow-md -translate-y-0.5;
+}
+
+.faq-item.active {
+  @apply shadow-lg;
+}
+
+.faq-question {
+  @apply flex items-center justify-between p-6 sm:p-6;
+}
+
+.faq-question span {
+  @apply text-base sm:text-lg font-medium text-gray-900 pr-8;
+}
+
+.faq-icon {
+  @apply w-6 h-6 text-indigo-600 transform transition-transform duration-300 flex-shrink-0;
+}
+
+.faq-icon.rotate {
+  @apply rotate-180;
+}
+
+.faq-answer {
+  @apply max-h-0 overflow-hidden text-gray-600 transition-all duration-300 ease-in-out;
+  opacity: 0;
+}
+
+.faq-answer.show {
+  @apply max-h-96 p-6 pt-0;
+  opacity: 1;
+}
+
+/* Staggered animation for items */
+.faq-item:nth-child(1) { animation-delay: 0.1s; }
+.faq-item:nth-child(2) { animation-delay: 0.2s; }
+.faq-item:nth-child(3) { animation-delay: 0.3s; }
+.faq-item:nth-child(4) { animation-delay: 0.4s; }
+.faq-item:nth-child(5) { animation-delay: 0.5s; }
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover effects */
+@media (hover: hover) {
+  .faq-item:hover:not(.active) {
+    @apply bg-gray-50;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .faq-container {
+    @apply px-4 py-12;
+  }
+
+  .faq-title {
+    @apply text-2xl mb-8;
+  }
+
+  .faq-question {
+    @apply p-4;
+  }
+
+  .faq-question span {
+    @apply text-base;
+  }
+
+  .faq-answer.show {
+    @apply p-4 pt-0;
+  }
+}

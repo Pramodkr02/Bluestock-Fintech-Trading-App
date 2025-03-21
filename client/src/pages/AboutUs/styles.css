@@ -1,0 +1,224 @@
+/* Base styles */
+.about-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  @apply flex items-center space-x-2 text-sm text-gray-500 mb-12;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.breadcrumb a {
+  @apply hover:text-indigo-600 transition-colors;
+}
+
+/* Hero Section */
+.hero-section {
+  @apply mb-20 max-w-4xl;
+  animation: slideUp 0.8s ease-out;
+}
+
+.main-title {
+  @apply text-4xl md:text-5xl font-bold text-gray-900 mb-6;
+  line-height: 1.2;
+}
+
+.main-description {
+  @apply text-xl text-gray-600 mb-4;
+}
+
+.sub-description {
+  @apply text-lg text-gray-500;
+}
+
+/* Statistics Section */
+.statistics-section {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-8 mb-24;
+}
+
+.statistic-card {
+  @apply bg-indigo-100 bg-opacity-50 rounded-2xl p-8 text-center transform transition-all duration-300;
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.statistic-card:hover {
+  @apply -translate-y-2 bg-opacity-70;
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+}
+
+.stat-number {
+  @apply text-3xl font-bold text-gray-900 mb-2;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+  @apply text-gray-600 font-medium;
+}
+
+/* News Section */
+.news-section {
+  @apply mb-24;
+  animation: fadeIn 1s ease-out;
+}
+
+.section-header {
+  @apply text-center mb-12;
+}
+
+.section-title {
+  @apply text-sm font-semibold text-indigo-600 tracking-wide uppercase mb-2;
+}
+
+.section-subtitle {
+  @apply text-3xl font-bold text-gray-900;
+}
+
+.news-grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-8 mb-8;
+}
+
+.news-card {
+  @apply bg-white rounded-xl p-6 transform transition-all duration-300 hover:shadow-xl;
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.news-card:hover {
+  @apply -translate-y-2;
+}
+
+.news-logo {
+  @apply h-8 mb-4 object-contain;
+}
+
+.news-description {
+  @apply text-gray-600 line-clamp-3;
+}
+
+.media-link {
+  @apply flex items-center justify-center space-x-2 text-indigo-600 font-medium cursor-pointer;
+}
+
+.media-link:hover .arrow-icon {
+  @apply translate-x-1;
+}
+
+.arrow-icon {
+  @apply w-5 h-5 transition-transform duration-300;
+}
+
+/* Join Section */
+.join-section {
+  @apply bg-indigo-600 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden;
+  animation: fadeIn 1s ease-out;
+}
+
+.join-section::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-indigo-600 to-indigo-800 opacity-50;
+  transform: skewY(-3deg);
+}
+
+.join-title {
+  @apply text-3xl md:text-4xl font-bold mb-6 relative;
+}
+
+.join-description {
+  @apply text-lg text-indigo-100 mb-4 relative max-w-2xl mx-auto;
+}
+
+.join-contact {
+  @apply text-indigo-200 mb-8 relative max-w-2xl mx-auto;
+}
+
+.apply-button {
+  @apply inline-flex items-center px-8 py-3 bg-white text-indigo-600 font-semibold rounded-xl 
+    transform transition-all duration-300 relative;
+}
+
+.apply-button:hover {
+  @apply -translate-y-1;
+  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
+}
+
+.button-icon {
+  @apply ml-2 w-5 h-5 transition-transform duration-300;
+}
+
+.apply-button:hover .button-icon {
+  @apply translate-x-1;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation delays for statistics cards */
+.statistic-card:nth-child(1) { animation-delay: 0.2s; }
+.statistic-card:nth-child(2) { animation-delay: 0.4s; }
+.statistic-card:nth-child(3) { animation-delay: 0.6s; }
+
+/* Animation delays for news cards */
+.news-card:nth-child(1) { animation-delay: 0.3s; }
+.news-card:nth-child(2) { animation-delay: 0.5s; }
+.news-card:nth-child(3) { animation-delay: 0.7s; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-title {
+    @apply text-3xl;
+  }
+
+  .statistics-section {
+    @apply grid-cols-1;
+  }
+
+  .news-grid {
+    @apply grid-cols-1;
+  }
+
+  .join-section {
+    @apply p-6;
+  }
+
+  .join-title {
+    @apply text-2xl;
+  }
+
+  .join-description,
+  .join-contact {
+    @apply text-base;
+  }
+}

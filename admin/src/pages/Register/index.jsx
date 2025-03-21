@@ -5,15 +5,29 @@ import { FcGoogle } from "react-icons/fc";
 import ReCAPTCHA from "react-google-recaptcha";
 import logo from "../../assets/logo.webp";
 
-const Login = () => {
+const Register = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [keepSignedIn, setKeepSignedIn] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your login logic here
+    // Add your registration logic here
   };
 
   const handleRecaptchaChange = (value) => {
@@ -21,7 +35,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen m-20 flex flex-col items-center justify-center bg-[#f5f5f5] px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#f5f5f5] px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-[340px] sm:max-w-[400px] md:max-w-[440px] bg-white rounded-xl shadow-lg p-6 sm:p-8 space-y-6 sm:space-y-8">
         <div className="text-center">
           <img
@@ -41,6 +55,43 @@ const Login = () => {
         </div>
         <form className="space-y-5 sm:space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4 sm:space-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label
+                  htmlFor="firstName"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  First Name
+                </label>
+                <input
+                  id="firstName"
+                  name="firstName"
+                  type="text"
+                  required
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  className="appearance-none block w-full px-3 py-2.5 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="lastName"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Last Name
+                </label>
+                <input
+                  id="lastName"
+                  name="lastName"
+                  type="text"
+                  required
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  className="appearance-none block w-full px-3 py-2.5 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                />
+              </div>
+            </div>
+
             <div>
               <label
                 htmlFor="email"
@@ -54,36 +105,28 @@ const Login = () => {
                 type="email"
                 autoComplete="email"
                 required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={formData.email}
+                onChange={handleChange}
                 className="appearance-none block w-full px-3 py-2.5 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
                 placeholder="johndoe@gmail.com"
               />
             </div>
+
             <div>
-              <div className="flex justify-between mb-1">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Password
-                </label>
-                <Link
-                  to="/forgot-password"
-                  className="text-sm text-indigo-600 hover:text-indigo-500"
-                >
-                  Forgot Password?
-                </Link>
-              </div>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Password
+              </label>
               <div className="relative">
                 <input
                   id="password"
                   name="password"
                   type={showPassword ? "text" : "password"}
-                  autoComplete="current-password"
                   required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={formData.password}
+                  onChange={handleChange}
                   className="appearance-none block w-full px-3 py-2.5 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
                 />
                 <button
@@ -92,6 +135,37 @@ const Login = () => {
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
+                    <AiOutlineEyeInvisible className="h-5 w-5 text-gray-400" />
+                  ) : (
+                    <AiOutlineEye className="h-5 w-5 text-gray-400" />
+                  )}
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor="confirmPassword"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Confirm Password
+              </label>
+              <div className="relative">
+                <input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type={showConfirmPassword ? "text" : "password"}
+                  required
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  className="appearance-none block w-full px-3 py-2.5 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                />
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  {showConfirmPassword ? (
                     <AiOutlineEyeInvisible className="h-5 w-5 text-gray-400" />
                   ) : (
                     <AiOutlineEye className="h-5 w-5 text-gray-400" />
@@ -111,18 +185,25 @@ const Login = () => {
 
           <div className="flex items-center">
             <input
-              id="keep-signed-in"
-              name="keep-signed-in"
+              id="agree-terms"
+              name="agree-terms"
               type="checkbox"
-              checked={keepSignedIn}
-              onChange={(e) => setKeepSignedIn(e.target.checked)}
+              checked={agreeToTerms}
+              onChange={(e) => setAgreeToTerms(e.target.checked)}
               className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+              required
             />
             <label
-              htmlFor="keep-signed-in"
+              htmlFor="agree-terms"
               className="ml-2 block text-sm text-gray-900"
             >
-              Keep me signed in
+              I agree to the{" "}
+              <Link
+                to="/terms"
+                className="text-indigo-600 hover:text-indigo-500"
+              >
+                Terms and Conditions
+              </Link>
             </label>
           </div>
 
@@ -131,7 +212,7 @@ const Login = () => {
               type="submit"
               className="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
             >
-              Login
+              Create Account
             </button>
           </div>
 
@@ -141,7 +222,7 @@ const Login = () => {
             </div>
             <div className="relative flex justify-center text-sm">
               <span className="px-2 bg-white text-gray-500">
-                or sign in with
+                or sign up with
               </span>
             </div>
           </div>
@@ -158,12 +239,12 @@ const Login = () => {
         </form>
 
         <p className="text-center text-sm text-gray-600">
-          Don't have an account?{" "}
+          Already have an account?{" "}
           <Link
-            to="/signup"
+            to="/login"
             className="font-medium text-indigo-600 hover:text-indigo-500"
           >
-            Create an account
+            Login here
           </Link>
         </p>
       </div>
@@ -171,4 +252,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

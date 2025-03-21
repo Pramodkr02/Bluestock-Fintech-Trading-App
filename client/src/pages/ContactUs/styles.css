@@ -1,0 +1,117 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.contact-card {
+  @apply relative bg-white rounded-2xl p-6 transition-all duration-300 overflow-hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.card-content {
+  @apply relative z-10;
+}
+
+.card-bg {
+  @apply absolute inset-0 transition-opacity duration-300 opacity-0;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(99, 102, 241, 0.1) 100%);
+}
+
+.contact-card:hover .card-bg {
+  @apply opacity-100;
+}
+
+.icon-wrapper {
+  @apply mb-4 p-3 rounded-xl inline-flex items-center justify-center;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.2) 100%);
+  animation: pulse 2s infinite;
+}
+
+.card-title {
+  @apply text-xl font-semibold text-gray-900 mb-2;
+}
+
+.card-description {
+  @apply text-gray-600 mb-6;
+}
+
+.contact-link {
+  @apply flex items-center text-indigo-600 font-medium hover:text-indigo-700 transition-colors;
+}
+
+.arrow-icon {
+  @apply w-5 h-5 ml-2 transition-transform duration-300 ease-in-out;
+}
+
+.contact-card:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+/* Custom animations for elements */
+.contact-card:nth-child(1) {
+  animation: fadeIn 0.5s ease-out 0.2s both;
+}
+
+.contact-card:nth-child(2) {
+  animation: fadeIn 0.5s ease-out 0.4s both;
+}
+
+/* Hover effect for links */
+.contact-link:hover span {
+  background: linear-gradient(90deg, #6366f1, #4f46e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Additional hover effects */
+.contact-card:hover .icon-wrapper {
+  animation: none;
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .contact-card {
+    @apply p-4;
+  }
+
+  .card-title {
+    @apply text-lg;
+  }
+
+  .icon-wrapper {
+    @apply p-2;
+  }
+}

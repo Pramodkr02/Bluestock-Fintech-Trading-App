@@ -5,6 +5,10 @@ import { FcGoogle } from "react-icons/fc";
 import ReCAPTCHA from "react-google-recaptcha";
 import logo from "../../assets/logo.webp";
 
+// Replace this with your actual reCAPTCHA site key
+const RECAPTCHA_SITE_KEY =
+  import.meta.env.VITE_RECAPTCHA_SITE_KEY || "your-recaptcha-site-key";
+
 const Register = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -16,6 +20,8 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreeToTerms, setAgreeToTerms] = useState(false);
+  const [recaptchaError, setRecaptchaError] = useState(false);
+  const [recaptchaValue, setRecaptchaValue] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,15 +33,26 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!recaptchaValue) {
+      setRecaptchaError(true);
+      return;
+    }
     // Add your registration logic here
+    console.log("Form submitted with reCAPTCHA:", { formData, recaptchaValue });
   };
 
   const handleRecaptchaChange = (value) => {
-    console.log("Captcha value:", value);
+    setRecaptchaValue(value);
+    setRecaptchaError(false);
+  };
+
+  const handleRecaptchaError = () => {
+    setRecaptchaError(true);
+    console.error("reCAPTCHA failed to load");
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#f5f5f5] px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen m-20 flex flex-col items-center justify-center bg-[#f5f5f5] px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-[340px] sm:max-w-[400px] md:max-w-[440px] bg-white rounded-xl shadow-lg p-6 sm:p-8 space-y-6 sm:space-y-8">
         <div className="text-center">
           <img
@@ -175,12 +192,18 @@ const Register = () => {
             </div>
           </div>
 
-          <div className="flex justify-center -mx-4 sm:mx-0">
+          <div className="flex flex-col items-center -mx-4 sm:mx-0">
             <ReCAPTCHA
-              sitekey="your-recaptcha-site-key"
+              sitekey={RECAPTCHA_SITE_KEY}
               onChange={handleRecaptchaChange}
+              onError={handleRecaptchaError}
               className="transform scale-[0.85] sm:scale-90"
             />
+            {recaptchaError && (
+              <p className="text-red-500 text-sm mt-2">
+                Please complete the reCAPTCHA verification
+              </p>
+            )}
           </div>
 
           <div className="flex items-center">
